@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Victor Cho</title>
+<meta name="description" content="Victor Cho — cowboy turned business analytics student. Fly-fishing, poetry, projects, and the long way here.">
+
+<!-- CSS framework via CDN, no build step -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+<style>
+  :root {
+    --spacing: 1rem;
+  }
+  body {
+    background: linear-gradient(180deg, #0f1b14 0%, #16241c 100%);
+  }
+  header.hero {
+    text-align: center;
+    padding: 3.5rem 1rem 2.5rem;
+  }
+  header.hero h1 {
+    margin-bottom: 0.25rem;
+    font-size: clamp(2rem, 6vw, 2.75rem);
+  }
+  header.hero p.tagline {
+    font-size: 1.1rem;
+    opacity: 0.85;
+    max-width: 38rem;
+    margin: 0 auto;
+  }
+  nav.topnav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(6px);
+    background: rgba(15, 27, 20, 0.85);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  nav.topnav ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.25rem 0.5rem;
+    margin: 0;
+    padding: 0.6rem 0.5rem;
+    list-style: none;
+  }
+  nav.topnav a {
+    font-size: 0.9rem;
+    padding: 0.35rem 0.6rem;
+    border-radius: 999px;
+    text-decoration: none;
+  }
+  nav.topnav a:hover,
+  nav.topnav a:focus {
+    background: rgba(255,255,255,0.08);
+  }
+  section {
+    padding: 2.5rem 0;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  section:first-of-type {
+    border-top: none;
+  }
+  section > hgroup, section > h2 {
+    text-align: center;
+    margin-bottom: 1.75rem;
+  }
+  section > hgroup p {
+    opacity: 0.75;
+  }
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+  .poem-card, article {
+    height: 100%;
+  }
+  .poem {
+    white-space: pre-line;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: italic;
+    line-height: 1.7;
+    font-size: 0.98rem;
+  }
+  .poem-title {
+    font-style: normal;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+  .catch-card {
+    max-width: 420px;
+    margin: 0 auto 1.75rem;
+    text-align: center;
+  }
+  .catch-card img {
+    width: 100%;
+    border-radius: var(--pico-border-radius);
+    display: block;
+  }
+  .catch-card .catch-title {
+    font-weight: 700;
+    margin-top: 0.75rem;
+    margin-bottom: 0.25rem;
+  }
+  .catch-card .catch-caption {
+    font-size: 0.9rem;
+    opacity: 0.75;
+    margin: 0;
+  }
+  .photo-placeholder {
+    aspect-ratio: 4 / 3;
+    border-radius: var(--pico-border-radius);
+    border: 1.5px dashed rgba(255,255,255,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: rgba(255,255,255,0.55);
+    font-size: 0.85rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: rgba(255,255,255,0.03);
+  }
+  .timeline {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-width: 40rem;
+    margin-inline: auto;
+  }
+  .timeline li {
+    padding: 0.4rem 0 0.4rem 1.25rem;
+    border-left: 2px solid rgba(255,255,255,0.15);
+    margin-left: 0.5rem;
+    position: relative;
+  }
+  .timeline li::before {
+    content: "";
+    position: absolute;
+    left: -6px;
+    top: 0.65rem;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #6fae72;
+  }
+  footer.site-footer {
+    text-align: center;
+    padding: 2.5rem 1rem 3rem;
+    opacity: 0.7;
+    font-size: 0.9rem;
+  }
+  .badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    justify-content: center;
+    margin-top: 0.75rem;
+  }
+  .badge-row span {
+    font-size: 0.78rem;
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+    background: rgba(111, 174, 114, 0.15);
+    border: 1px solid rgba(111, 174, 114, 0.4);
+  }
+  .profile-photo {
+    width: 270px;
+    height: 270px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 1.25rem auto 0;
+    display: block;
+    border: 3px solid rgba(111, 174, 114, 0.5);
+    box-shadow: 0 4px 18px rgba(0,0,0,0.35);
+  }
+  .resume-block {
+    margin-bottom: 2rem;
+  }
+  .resume-block:last-child {
+    margin-bottom: 0;
+  }
+  .resume-block h3 {
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    padding-bottom: 0.4rem;
+    margin-bottom: 1rem;
+  }
+  .resume-entry {
+    margin-bottom: 1.25rem;
+  }
+  .resume-entry:last-child {
+    margin-bottom: 0;
+  }
+  .resume-entry-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.25rem 1rem;
+  }
+  .resume-entry-header strong {
+    font-size: 1.02rem;
+  }
+  .resume-entry-header .dates {
+    font-size: 0.85rem;
+    opacity: 0.65;
+    white-space: nowrap;
+  }
+  .resume-entry .role {
+    font-style: italic;
+    opacity: 0.85;
+    margin: 0.1rem 0 0.4rem;
+  }
+  .resume-entry ul {
+    margin: 0;
+    padding-left: 1.2rem;
+  }
+  .resume-entry ul li {
+    margin-bottom: 0.3rem;
+    font-size: 0.95rem;
+  }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  .skills-grid h4 {
+    margin-bottom: 0.4rem;
+    font-size: 0.95rem;
+    opacity: 0.8;
+  }
+  .resume-contact {
+    text-align: center;
+    opacity: 0.75;
+    font-size: 0.9rem;
+    margin-top: -0.5rem;
+    margin-bottom: 1.75rem;
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav" aria-label="Section navigation">
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#who-i-am">Who I Am</a></li>
+    <li><a href="#resume">Resume</a></li>
+    <li><a href="#fishing">Fishing Journey</a></li>
+    <li><a href="#poems">Poems</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<main class="container">
+
+  <header class="hero" id="home">
+    <h1>Victor Cho</h1>
+    <p class="tagline">A curious outdoorsman, veteran, and lifelong learner who believes the world is too interesting to stop asking questions.</p>
+    <div class="badge-row">
+      <span>Fly-Fishing</span>
+      <span>Data Analytics &amp; AI</span>
+      <span>Economics</span>
+      <span>Finance</span>
+      <span>Beekeeping</span>
+      <span>Collegiate Football</span>
+      <span>Skiing</span>
+      <span>Sustainability</span>
+      <span>Conservation</span>
+      <span>Leadership</span>
+    </div>
+    <img class="profile-photo" src="assets/images/profile-photo.jpg" alt="Victor Cho smiling outdoors in Boston's Public Garden on a fall day">
+  </header>
+
+  <!-- WHO I AM -->
+  <section id="who-i-am">
+    <hgroup>
+      <h2>Who I Am</h2>
+      <p>The short version — it's a long story</p>
+    </hgroup>
+    <article>
+      <p>
+        I'm a wanderer, wandering through this world with endless curiosity, wondering what lies beyond the
+        next river, mountain, state, country, and question.
+      </p>
+      <p>
+        Just like nature itself, I've migrated quite a few times. Born in South Korea, I spread my wings across
+        Idaho, Texas, and Oregon, and now I've found myself in Boston. From the Pacific Ocean to the Gulf of
+        Mexico, the Atlantic Ocean, and the East Sea in Korea, I've wandered across different landscapes,
+        cultures, and ways of life.
+      </p>
+      <p>
+        Along the way, I've worn quite a few hats: soldier, collegiate football player, rancher, mechanic,
+        beekeeper, plumber, HVAC engineer, data analyst, and now a business analytics graduate student at
+        Babson Business School. Some people might call that an unusual career path. <strong>I call it curiosity.</strong>
+      </p>
+      <p>
+        I've always believed that life is too interesting to spend it doing just one thing. Whether I'm fixing
+        a broken water pump, leading soldiers, managing beehives, or analyzing millions of data points, I find
+        myself asking the same question: <strong>Why does this happen, and what can I learn from it?</strong>
+      </p>
+      <p>
+        That's what eventually brought me into economics, analytics, and strategy. I love numbers (no, I'm not
+        good at math), but what fascinates me more is the meaning behind them. A spreadsheet might tell you
+        what happened, but understanding why it happened takes curiosity, experience, and sometimes a little
+        imagination.
+      </p>
+      <p>
+        When I'm not chasing the meaning behind the numbers, you'll probably find me standing waist-deep in a
+        river, waving a fly rod around, trying to convince a fish to eat something I tied the night before. Fly
+        fishing has taught me something no textbook ever could: patience, humility, and the beauty of not
+        knowing what's going to happen next. And when Mother Nature decides I should stay indoors, I sometimes
+        write poetry. I suppose it's another way of wandering, except instead of exploring rivers and mountains,
+        I'm exploring thoughts, memories, and questions through words.
+      </p>
+      <p>
+        I don't know exactly where life will take me, and that's part of the excitement. I just hope to keep
+        learning, helping people, exploring unfamiliar places, and leaving the world a little better than I
+        found it.
+      </p>
+      <p>
+        <strong>After all, I'm just a curious man trying to be the happiest man in the world.</strong>
+      </p>
+    </article>
+  </section>
+
+  <!-- RESUME -->
+  <section id="resume">
+    <hgroup>
+      <h2>Resume</h2>
+      <p>Education, experience, and skills</p>
+    </hgroup>
+    <p class="resume-contact">
+      <a href="mailto:scho4@babson.edu">scho4@babson.edu</a> ·
+      <a href="https://linkedin.com/in/victorscho" target="_blank" rel="noopener">linkedin.com/in/victorscho</a>
+    </p>
+
+    <article class="resume-block">
+      <h3>Education</h3>
+      <div class="resume-entry">
+        <div class="resume-entry-header">
+          <strong>Babson College, F.W. Olin Graduate School of Business</strong>
+          <span class="dates">Sept 2026 – Expected Dec 2027</span>
+        </div>
+        <p class="role">Master of Science in Business Analytics (MSBA) — Wellesley, MA</p>
+      </div>
+      <div class="resume-entry">
+        <div class="resume-entry-header">
+          <strong>Lewis &amp; Clark College</strong>
+          <span class="dates">May 2026</span>
+        </div>
+        <p class="role">Bachelor of Arts, Economics — Portland, OR · Collegiate-Athlete (NCAA D3 Football)</p>
+      </div>
+    </article>
+
+    <article class="resume-block">
+      <h3>Experience</h3>
+
+      <div class="resume-entry">
+        <div class="resume-entry-header">
+          <strong>MassTimber Finance &amp; Consumer (MTFC)</strong>
+          <span class="dates">May 2026 – Sept 2026</span>
+        </div>
+        <p class="role">Web Developer &amp; Researcher</p>
+        <ul>
+          <li>Researched and structured 8 international case studies with sourced citations, organized into a market/non-market comparative framework</li>
+          <li>Connected and integrated multiple third-party APIs to extend platform functionality and automate data workflows across the site</li>
+        </ul>
+      </div>
+
+      <div class="resume-entry">
+        <div class="resume-entry-header">
+          <strong>Army: United Nation Peace Corps (KATUSA)</strong>
+          <span class="dates">June 2022 – May 2024</span>
+        </div>
+        <p class="role">Platoon Sergeant</p>
+        <ul>
+          <li>Completed 2 deployments and 7 missions with zero casualties</li>
+          <li>Directed a 20-soldier squad in high-stakes environments, ensuring mission success and team cohesion</li>
+          <li>Planned and executed reconnaissance missions, gathering critical intelligence for operational strategies</li>
+          <li>Trained and mentored 25 junior soldiers, fostering development and enhancing overall team performance</li>
+        </ul>
+      </div>
+
+      <div class="resume-entry">
+        <div class="resume-entry-header">
+          <strong>Jubitz Corporation</strong>
+          <span class="dates">Oct 2025 – Dec 2025</span>
+        </div>
+        <p class="role">Data Analyst</p>
+        <ul>
+          <li>Analyzed over 20 million mobility data points across the Portland Metro area using Placer.ai to evaluate traffic flows, event visitation, and 10+ sponsorship performance</li>
+          <li>Designed and automated Excel dashboards for Ticket Sales (≈10,000 total tickets, valued at $300K+) to help the security team forecast attendance and optimize staffing</li>
+          <li>Analyzed fuel pricing trends and purchasing behavior across 100+ commercial accounts, identifying margin gaps and recommending adjustments that increased margin-per-gallon by an estimated 4–7% across key customer segments</li>
+          <li>Contributed to the Interstate Bridge Reconstruction (IBR) Initiative, analyzing exit-location accessibility and efficiency through regional mobility data to inform infrastructure and policy recommendations</li>
+        </ul>
+      </div>
+
+      <div class="resume-entry">
+        <div class="resume-entry-header">
+          <strong>Lewis &amp; Clark College</strong>
+          <span class="dates">May 2025 – May 2026</span>
+        </div>
+        <p class="role">Mechanical, Electrical, and Plumbing Engineer</p>
+        <ul>
+          <li>Maintained and repaired MEP systems in a 140-acre campus (1,000+ dormitory rooms &amp; 42+ buildings)</li>
+          <li>Compared energy efficiency ratings across boiler and HVAC systems, identifying sustainability upgrades to reduce campus-wide energy consumption</li>
+        </ul>
+      </div>
+
+      <div class="resume-entry">
+        <div class="resume-entry-header">
+          <strong>Jacobsen Salt Co</strong>
+          <span class="dates">May 2025 – Sept 2025</span>
+        </div>
+        <p class="role">Beekeeper Intern</p>
+        <ul>
+          <li>Managed 30+ hives through inspections, mite testing, and seasonal treatments</li>
+          <li>Conducted 10+ client site visits to troubleshoot colony health issues</li>
+          <li>Educated community members on pollinator health, sustainable practices, and beekeeping techniques</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="resume-block">
+      <h3>Skills</h3>
+      <div class="skills-grid">
+        <div>
+          <h4>Technical</h4>
+          <p>Microsoft Excel (Advanced), Tableau, R (RStudio), Python, SQL, GitHub, Visual Studio, Data Analysis, Data Visualization, HVAC Maintenance</p>
+        </div>
+        <div>
+          <h4>AI</h4>
+          <p>ChatGPT, Claude, Microsoft Copilot, AI API Integration, Prompt Engineering</p>
+        </div>
+        <div>
+          <h4>Foreign Language</h4>
+          <p>Korean (Fluent), Spanish (Intermediate)</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="resume-block">
+      <h3>Extracurricular</h3>
+      <ul>
+        <li>Winner of Lewis &amp; Clark Entrepreneurship (Shark Tank) Competition 2025, finalist of Invent Oregon 2025</li>
+        <li>Member of Lewis &amp; Clark College Student Investment Team (stock portfolio increased 20% in Q4 2025)</li>
+        <li>Member/Volunteer, Oregon Salmon Hatcheries</li>
+        <li>Member, Oregon State Beekeepers Association (OSBA)</li>
+      </ul>
+    </article>
+  </section>
+
+  <!-- FISHING JOURNEY -->
+  <section id="fishing">
+    <hgroup>
+      <h2>My Fishing Journey</h2>
+      <p>From riverbanks to grad school and back again</p>
+    </hgroup>
+
+    <figure class="catch-card">
+      <img src="assets/images/catch-of-the-month-brook-trout.jpg" alt="A brook trout with orange, blue, and yellow speckled markings held in a wet hand above a mossy log at Swift River, MA" loading="lazy">
+      <p class="catch-title">Victor's Catch of the Month</p>
+      <figcaption class="catch-caption">
+        This is the brook trout I caught at Swift River, MA. I've caught lots of different types of trout, but
+        this brook trout is perfectly camouflaged in New England's fall colors.
+      </figcaption>
+    </figure>
+
+    <article>
+      <p>
+        It started the way most good things do — by accident, standing somewhere I probably wasn't supposed to be,
+        with a rod I barely knew how to cast. Growing up between ranch work and open country, the river was the
+        one place that didn't ask anything of me. No orders, no scoreboard, no deadlines. Just current, patience,
+        and the occasional tug that made the whole day worth it.
+      </p>
+      <p>
+        The Army taught me discipline. Football taught me how to take a hit and get back up. Ranching and beekeeping
+        taught me that nature runs on its own schedule, not yours. Fly-fishing taught me all of that at once, quietly,
+        standing knee-deep in cold water with a line in my hand.
+      </p>
+      <p>
+        These days I tie my own flies — badly at first, less badly now — and treat every new pattern like a tiny
+        engineering problem with feathers. Whether I'm in a classroom running regressions or standing in a river
+        running out of daylight, the goal is the same: pay attention, stay patient, and let the current decide.
+      </p>
+    </article>
+
+    <ul class="timeline">
+      <li><strong>The ranch years</strong> — hay, horses, and learning to read weather before a screen ever told me to.</li>
+      <li><strong>Boots on the ground</strong> — military service, discipline, and a different kind of patience.</li>
+      <li><strong>Hives &amp; honey</strong> — beekeeping on the side, because apparently one unpredictable hobby wasn't enough.</li>
+      <li><strong>Finding the river</strong> — picked up a fly rod and never really put it back down.</li>
+      <li><strong>Tying my own flies</strong> — turns out feathers and thread are cheaper therapy than most things.</li>
+      <li><strong>Babson</strong> — business analytics grad school, trading rivers for spreadsheets (most days).</li>
+    </ul>
+
+    <div class="photo-placeholder">📷 Photo coming soon — fly box / tying bench</div>
+  </section>
+
+  <!-- POEMS -->
+  <section id="poems">
+    <hgroup>
+      <h2>Poems</h2>
+      <p>Questionable poetry, as promised</p>
+    </hgroup>
+
+    <div class="card-grid">
+      <article class="poem-card">
+        <div class="poem-title">Where I Could</div>
+        <div class="poem">Where I could be a boy again
+by the riverbend,
+no-clock, no-name
+just me and the slow-moving water.
+
+Grassland-wide feeling.
+Like everything ahead, nothing behind.
+
+Boots half-wet, slipping down a slickenslide bank,
+hands in the brush-tangle,
+mud on my palms like it meant something.
+
+Sky full of thunderheads —
+big, swollen, almost breaking.
+The kind that make you feel small
+but somehow more alive.
+
+Where I could cast a line
+and think that was enough.
+The reel-click-prelude,
+that quiet before something pulls or doesn't.
+Didn't matter.
+
+A culvert nearby humming low,
+darkling water running through it,
+like some hidden path only the fish understood.
+
+Me — kid-of-the-river, he-who-waits-too-long —
+standing there trying to magnify the moment,
+hold it, stretch it,
+like time had a flex to it.
+
+Sometimes I'd just sit.
+Watch the glister on the surface.
+Think about nothing. Or everything.
+
+Where I could stay like that forever —
+no questions, no answers,
+just the feeling that life was wide open
+and I hadn't messed it up yet.
+
+This is not a time to think.
+Just cast. Just stand there.
+Let the current decide.</div>
+      </article>
+
+      <article class="poem-card">
+        <div class="poem-title">I Know, But Not Fully</div>
+        <div class="poem">I know who I am —
+at least enough to walk forward,
+but not enough to explain it clean.
+
+Some days I sit in class,
+but my mind is already outside,
+somewhere between trees that don't ask questions.
+
+Out there, I feel like just another young life on this earth,
+nothing special, nothing above —
+just present.
+
+The trees don't judge me,
+they just stand, hundreds of years deep in silence,
+watching something like me pass through.
+
+And the river, carved by ice ages I can't even imagine,
+moving without trying,
+never asking where it's going.
+
+That's where I start to understand —
+it's not about the result.
+It's just the process:
+breathing, standing, casting a line,
+letting time move whether I want it to or not.
+
+I get smaller out there,
+in front of rock that came from fire,
+in front of water that shaped everything before me.
+
+And somehow —
+that's where I feel the most like myself.
+
+Because life, real life,
+isn't built on what we chase,
+but on the things we forget to notice
+that have been holding everything together this whole time.</div>
+      </article>
+
+      <article class="poem-card">
+        <div class="poem-title">Poem #13</div>
+        <div class="poem">I walked beside the quiet stream
+The water pulled me slow
+The current moved like it had plans
+Of places I don't know</div>
+      </article>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <hgroup>
+      <h2>Projects</h2>
+      <p>What I've been building and researching</p>
+    </hgroup>
+
+    <div class="card-grid">
+      <article>
+        <div class="photo-placeholder">📷 Project photo coming soon</div>
+        <h3>Mass Timber Research</h3>
+        <p>
+          Research into mass timber construction — exploring its viability, sustainability impact, and
+          data-driven analysis of adoption trends compared to traditional building materials.
+        </p>
+      </article>
+
+      <article>
+        <div class="photo-placeholder">📷 Project photo coming soon</div>
+        <h3>Bikeshare Analytics</h3>
+        <p>
+          An analytics project digging into bikeshare usage patterns — ridership trends, station demand,
+          and what the data says about how cities actually move.
+        </p>
+      </article>
+
+      <article>
+        <div class="photo-placeholder">📷 More projects coming soon</div>
+        <h3>More in the Works</h3>
+        <p>
+          Always tying a new fly, running a new analysis, or starting a project I'll probably tell you
+          about before it's finished. Check back soon.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <hgroup>
+      <h2>Get in Touch</h2>
+      <p>Always up for talking fishing, data, or anything in between</p>
+    </hgroup>
+    <p style="text-align:center;">
+      Best way to reach me is
+      <a href="https://www.linkedin.com/in/your-linkedin-handle" target="_blank" rel="noopener">LinkedIn</a>
+      — drop a message and I'll get back to you.
+    </p>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <p>&copy; <span id="year"></span> Victor Cho. Built with patience, poetry, and a questionable number of fishing flies.</p>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
