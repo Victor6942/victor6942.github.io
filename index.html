@@ -111,6 +111,29 @@
     opacity: 0.75;
     margin: 0;
   }
+  .gallery-heading {
+    text-align: center;
+    font-size: 1.1rem;
+    opacity: 0.85;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  .photo-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 0.6rem;
+  }
+  .photo-gallery img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: var(--pico-border-radius);
+    display: block;
+    transition: transform 0.2s ease;
+  }
+  .photo-gallery img:hover {
+    transform: scale(1.04);
+  }
   .photo-placeholder {
     aspect-ratio: 4 / 3;
     border-radius: var(--pico-border-radius);
@@ -240,6 +263,69 @@
     margin-top: -0.5rem;
     margin-bottom: 1.75rem;
   }
+  .academic-card {
+    display: flex;
+    flex-direction: column;
+  }
+  .academic-card .academic-icon {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  .academic-card p {
+    flex-grow: 1;
+  }
+  .academic-card .paper-link {
+    margin-top: 0.5rem;
+    align-self: center;
+  }
+  .project-card {
+    display: flex;
+    flex-direction: column;
+  }
+  .project-card p {
+    flex-grow: 1;
+  }
+  .project-card .project-link {
+    margin-top: 0.75rem;
+    align-self: center;
+  }
+  .project-logo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto 1rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  }
+  .project-photo {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--pico-border-radius);
+    display: block;
+    margin-bottom: 1rem;
+  }
+  .issues-card {
+    margin-top: 1.25rem;
+  }
+  .issues-card h3 {
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    padding-bottom: 0.4rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  .issues-card ul {
+    margin: 0;
+    padding-left: 1.2rem;
+  }
+  .issues-card li {
+    margin-bottom: 0.6rem;
+  }
+  .issues-card li:last-child {
+    margin-bottom: 0;
+  }
 </style>
 </head>
 <body>
@@ -249,9 +335,11 @@
     <li><a href="#home">Home</a></li>
     <li><a href="#who-i-am">Who I Am</a></li>
     <li><a href="#resume">Resume</a></li>
+    <li><a href="#academic">Academic</a></li>
+    <li><a href="#projects">Projects</a></li>
     <li><a href="#fishing">Fishing Journey</a></li>
     <li><a href="#poems">Poems</a></li>
-    <li><a href="#projects">Projects</a></li>
+    <li><a href="#nature">Through My Eyes</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -295,7 +383,7 @@
       </p>
       <p>
         Along the way, I've worn quite a few hats: soldier, collegiate football player, rancher, mechanic,
-        beekeeper, plumber, HVAC engineer, data analyst, and now a business analytics graduate student at
+        beekeeper, plumber, HVAC engineer, server, data analyst, and now a business analytics graduate student at
         Babson Business School. Some people might call that an unusual career path. <strong>I call it curiosity.</strong>
       </p>
       <p>
@@ -455,11 +543,108 @@
     </article>
   </section>
 
+  <!-- ACADEMIC -->
+  <section id="academic">
+    <hgroup>
+      <h2>Academic</h2>
+      <p>Thesis, analytics work, and the questions I can't stop chewing on</p>
+    </hgroup>
+
+    <div class="card-grid">
+      <article class="academic-card">
+        <div class="academic-icon">🎓</div>
+        <h3>Senior Thesis</h3>
+        <p>
+          Defense R&amp;D and Growth — a look at how defense research &amp; development spending shapes
+          long-run economic growth, and what the data actually supports.
+        </p>
+        <a class="paper-link" href="assets/papers/thesis-defense-rd.pdf" target="_blank" rel="noopener" role="button">Read the full paper ↗</a>
+      </article>
+
+      <article class="academic-card">
+        <div class="academic-icon">📊</div>
+        <h3>Visualization &amp; Analytics</h3>
+        <p>
+          A bikeshare case study turning ridership data into a story — demand patterns, station usage,
+          and what the numbers say about how a city actually moves.
+        </p>
+        <a class="paper-link" href="assets/papers/msb-bikeshare-case.pdf" target="_blank" rel="noopener" role="button">Read the full paper ↗</a>
+      </article>
+
+      <article class="academic-card">
+        <div class="academic-icon">🌐</div>
+        <h3>Trade Paper</h3>
+        <p>
+          My research examines how U.S.–China trade restrictions and industrial policies, particularly in
+          the drone industry, affect comparative advantage, supply chains, and consumer welfare —
+          finding that they often increase costs and reduce economic efficiency without significantly
+          strengthening domestic manufacturing.
+        </p>
+        <a class="paper-link" href="assets/papers/econ348-final-paper.pdf" target="_blank" rel="noopener" role="button">Read the full paper ↗</a>
+      </article>
+    </div>
+
+    <article class="issues-card">
+      <h3>Issues I Currently Care About</h3>
+      <ul>
+        <li><strong>Supply Chain Analytics and Global Competitiveness</strong> — how data-driven supply chain strategies can improve global competitiveness, operational efficiency, and risk management.</li>
+        <li><strong>Economic Forces Behind Social Unrest</strong> — exploring the macroeconomic drivers of political unrest and social inequality, particularly in France and across Europe.</li>
+        <li><strong>Native Fish Conservation and Freshwater Ecosystems</strong> — understanding declining native fish populations and their long-term impacts on river ecosystems, biodiversity, and conservation.</li>
+        <li><strong>Global Defense Innovation and National Security</strong> — exploring the relationship between defense technology, national security, global supply chains, and economic interdependence.</li>
+      </ul>
+    </article>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <hgroup>
+      <h2>Projects</h2>
+      <p>What I've been building and researching</p>
+    </hgroup>
+
+    <div class="card-grid">
+      <article class="project-card">
+        <img class="project-logo" src="assets/images/three-ingredient-badge.png" alt="Three Ingredient Co. badge logo — a fly fisherman with a dog and cat watching mountains and a sunset, with the text 'Raw · Time · Care'" loading="lazy">
+        <h3>Three Ingredient Co.</h3>
+        <p>
+          Three Ingredient Co. started from a simple idea: the parts most people throw away are often the
+          most nutritious for pets. As a fly fisherman in Boston, I built a pet treat brand around three
+          ingredients, Raw, Time, and Care: single-ingredient, slow-dried treats with nothing added and
+          nothing wasted.
+        </p>
+      </article>
+
+      <article class="project-card">
+        <img class="project-photo" src="assets/images/sunshine-window-team.jpg" alt="The Sunshine Window team being interviewed at a competition showcase, standing next to their LED daylight display" loading="lazy">
+        <h3>The Sunshine Window</h3>
+        <p>
+          The idea for Sunshine Window came from experiencing Oregon's long, gloomy winters, where more
+          than 200 days of cloudy and rainy weather can make natural sunlight hard to come by. I asked
+          myself a simple question: if every house has windows to let sunlight in, what happens when
+          there's no sunlight? Sunshine Window was designed to recreate natural daylight using LED
+          technology, helping support the body's natural circadian rhythm, which regulates sleep, energy,
+          and mood. What started as a simple observation became an entrepreneurial venture, winning the
+          2025 Winterim Competition and reaching the 2025 InventOR finals.
+        </p>
+      </article>
+
+      <article class="project-card">
+        <h3>MassTimber Finance &amp; Consumer (MTFC)</h3>
+        <p>
+          Research into mass timber construction — exploring its viability, sustainability impact, and
+          data-driven analysis of adoption trends compared to traditional building materials. Built and
+          shipped the website for the project.
+        </p>
+        <a class="project-link" href="https://www.masstimberfinanceconsumer.org" target="_blank" rel="noopener" role="button">Visit the site ↗</a>
+      </article>
+    </div>
+  </section>
+
   <!-- FISHING JOURNEY -->
   <section id="fishing">
     <hgroup>
       <h2>My Fishing Journey</h2>
-      <p>From riverbanks to grad school and back again</p>
+      <p>Every river has a story, and I'm still learning to read it.</p>
     </hgroup>
 
     <figure class="catch-card">
@@ -473,33 +658,78 @@
 
     <article>
       <p>
-        It started the way most good things do — by accident, standing somewhere I probably wasn't supposed to be,
-        with a rod I barely knew how to cast. Growing up between ranch work and open country, the river was the
-        one place that didn't ask anything of me. No orders, no scoreboard, no deadlines. Just current, patience,
-        and the occasional tug that made the whole day worth it.
+        There's a reason I call it fishing, not catching.
       </p>
       <p>
-        The Army taught me discipline. Football taught me how to take a hit and get back up. Ranching and beekeeping
-        taught me that nature runs on its own schedule, not yours. Fly-fishing taught me all of that at once, quietly,
-        standing knee-deep in cold water with a line in my hand.
+        To me, fly fishing has never been just about catching fish. It's about returning to the basics,
+        disappearing from the noise of everyday life, and remembering that the world is much bigger than
+        whatever problems are waiting for me back home.
       </p>
       <p>
-        These days I tie my own flies — badly at first, less badly now — and treat every new pattern like a tiny
-        engineering problem with feathers. Whether I'm in a classroom running regressions or standing in a river
-        running out of daylight, the goal is the same: pay attention, stay patient, and let the current decide.
+        Standing in a river, I don't need to worry about emails, AI, or what tomorrow might bring. Instead, I
+        find myself watching the falling leaves drift along the current in autumn, noticing the first newborn
+        sprouts pushing through the soil in spring, or listening to the water make its way around the rocks.
+        Sometimes, I spend hours or days without catching a single fish, yet somehow, I return home happier than
+        when I left.
+      </p>
+      <p>
+        That's the beauty of fishing.
+      </p>
+      <p>
+        Being a fly fisherman has also taught me to become a better observer of Mother Nature. The temperature
+        of the water, the insects dancing above the surface, the direction of the wind, and even the smallest
+        changes in the current all tell a story. The more time I spend outdoors, the more I realize how much I
+        still don't know. And that curiosity is what keeps bringing me back.
+      </p>
+      <p>
+        I tie my own flies, too. There's something special about sitting down with a few feathers, some thread,
+        and a hook, trying to imitate a tiny creature that Mother Nature has spent millions of years perfecting.
+        Sometimes the fish agree with my creation. Most of the time, they remind me who's smarter.
+      </p>
+      <p>
+        But perhaps the greatest lesson fly fishing has taught me is that <strong>not everything in life needs
+        to have a measurable outcome to be meaningful.</strong> We live in a world that constantly asks us to be
+        productive, move faster, and achieve more. Yet a river never seems to be in a hurry. The trees don't
+        compete to grow taller overnight, and the fish certainly don't care about my résumé.
+      </p>
+      <p>
+        Sometimes, while whistling to the fish and watching my fly drift along the current, my mind begins to
+        wander. I find myself thinking about everything from how I could improve a project at work to how I
+        could become a better person, help someone, or approach life's challenges from a different perspective.
+        Funny enough, some of my best ideas come when I'm miles away from my laptop, surrounded by nothing but
+        trees, water, and a few fish that refuse to cooperate. But other times, <strong>I don't think about
+        anything at all.</strong> No problems to solve, no questions to answer, no plans to make. Just me, the
+        river, and Mother Nature doing what she does best. And perhaps those are the moments I enjoy the most.
+      </p>
+      <p>
+        Sometimes, the most valuable thing I can do is simply stand there, breathe the cold air, and appreciate
+        being alive.
+      </p>
+      <p>
+        I may spend my professional life searching for meaning behind the numbers, but out on the river, I've
+        learned that some of life's most beautiful things cannot be measured.
       </p>
     </article>
 
-    <ul class="timeline">
-      <li><strong>The ranch years</strong> — hay, horses, and learning to read weather before a screen ever told me to.</li>
-      <li><strong>Boots on the ground</strong> — military service, discipline, and a different kind of patience.</li>
-      <li><strong>Hives &amp; honey</strong> — beekeeping on the side, because apparently one unpredictable hobby wasn't enough.</li>
-      <li><strong>Finding the river</strong> — picked up a fly rod and never really put it back down.</li>
-      <li><strong>Tying my own flies</strong> — turns out feathers and thread are cheaper therapy than most things.</li>
-      <li><strong>Babson</strong> — business analytics grad school, trading rivers for spreadsheets (most days).</li>
-    </ul>
-
-    <div class="photo-placeholder">📷 Photo coming soon — fly box / tying bench</div>
+    <h3 class="gallery-heading">A Few More From the River</h3>
+    <div class="photo-gallery">
+      <img src="assets/images/gallery/fish-5889.jpg" alt="Victor holding a rainbow trout above a landing net on a sunny day on the river" loading="lazy">
+      <img src="assets/images/gallery/fish-8304.jpg" alt="A bass caught on a bead-head fly, held up next to the river" loading="lazy">
+      <img src="assets/images/gallery/fish-8307.jpg" alt="A rainbow trout with a pink stripe resting in a landing net, a white fly still in its lip" loading="lazy">
+      <img src="assets/images/gallery/fish-2642.jpg" alt="A rainbow trout resting in a landing net with a fly still hooked in its mouth" loading="lazy">
+      <img src="assets/images/gallery/fish-8309.jpg" alt="Close-up of a trout sipping a dry fly off the surface, water reflections in the background" loading="lazy">
+      <img src="assets/images/gallery/fish-8303.jpg" alt="Close-up of a trout's head and eye in a landing net, with an orange fly visible" loading="lazy">
+      <img src="assets/images/gallery/fish-8305.jpg" alt="A small dace minnow resting in a landing net" loading="lazy">
+      <img src="assets/images/gallery/fish-2650.jpg" alt="Victor holding a fly rod in his mouth while presenting a rainbow trout with both hands, bare winter trees and a landing net in the background" loading="lazy">
+      <img src="assets/images/gallery/fish-6075.jpg" alt="Black and white photo of Victor casting a fly rod along a riverbank, framed by trees" loading="lazy">
+      <img src="assets/images/gallery/fish-6066.jpg" alt="Victor smiling and holding up a rainbow trout in golden evening light, with a rocky riverbank behind him" loading="lazy">
+      <img src="assets/images/gallery/fish-6016.jpg" alt="Victor holding a trout up to the camera with a surprised smile, blue sky and trees in the background" loading="lazy">
+      <img src="assets/images/gallery/fish-5504.jpg" alt="Victor in a Tillamook cap holding a trout out toward the camera on a foggy, overcast day in the forest" loading="lazy">
+      <img src="assets/images/gallery/fish-2078.jpg" alt="Victor smiling and holding a trout on a snowy riverbank, surrounded by pine trees" loading="lazy">
+      <img src="assets/images/gallery/fish-6169.jpg" alt="Victor holding a fly rod in his mouth while presenting a rainbow trout with both hands, standing in a river surrounded by forest" loading="lazy">
+      <img src="assets/images/gallery/fish-6276.jpg" alt="Victor kneeling in a river holding a rainbow trout and a landing net, with a bridge in the background" loading="lazy">
+      <img src="assets/images/flybox.jpg" alt="Victor's fly box, packed with hand-tied streamers and nymphs in bright pinks, oranges, purples, and natural olive tones" loading="lazy">
+    </div>
   </section>
 
   <!-- POEMS -->
@@ -511,78 +741,83 @@
 
     <div class="card-grid">
       <article class="poem-card">
-        <div class="poem-title">Where I Could</div>
-        <div class="poem">Where I could be a boy again
-by the riverbend,
-no-clock, no-name
-just me and the slow-moving water.
+        <div class="poem-title">Big City, the Boston</div>
+        <div class="poem">Lots of stop signs,
+yet nobody seems to stop.
 
-Grassland-wide feeling.
-Like everything ahead, nothing behind.
+Horns singing louder than the birds' hymns,
+tall buildings standing shoulder to shoulder,
+blocking the wind's melody.
 
-Boots half-wet, slipping down a slickenslide bank,
-hands in the brush-tangle,
-mud on my palms like it meant something.
+Thousands of feet marching through the streets,
+rushing toward somewhere,
+without noticing the penny on the ground.
+Perhaps everyone is chasing a dollar.
 
-Sky full of thunderheads —
-big, swollen, almost breaking.
-The kind that make you feel small
-but somehow more alive.
+But beyond the concrete and noise,
+the earth still sings her song.
 
-Where I could cast a line
-and think that was enough.
-The reel-click-prelude,
-that quiet before something pulls or doesn't.
-Didn't matter.
+Summer has been falling,
+turning green into gold,
+leaving her warmth behind,
+and slipping into a colorful sweatshirt
+that somehow matches my old flannel.
 
-A culvert nearby humming low,
-darkling water running through it,
-like some hidden path only the fish understood.
+The trees slowly undress,
+one leaf at a time,
+painting the ground with colors
+no artist could ever afford.
 
-Me — kid-of-the-river, he-who-waits-too-long —
-standing there trying to magnify the moment,
-hold it, stretch it,
-like time had a flex to it.
+On a quiet pond,
+I paddle alongside a pair of swans.
+They glide through the water,
+and for a moment,
+I am reminded
+that eternal love still exists.
 
-Sometimes I'd just sit.
-Watch the glister on the surface.
-Think about nothing. Or everything.
+Above us,
+the geese are heading south,
+their farewell echoing across the sky,
+warning us that winter is coming.
 
-Where I could stay like that forever —
-no questions, no answers,
-just the feeling that life was wide open
-and I hadn't messed it up yet.
+The wind grows colder,
+the days grow shorter.
 
-This is not a time to think.
-Just cast. Just stand there.
-Let the current decide.</div>
+I would rather walk
+at the speed of the seasons.</div>
       </article>
 
       <article class="poem-card">
         <div class="poem-title">I Know, But Not Fully</div>
-        <div class="poem">I know who I am —
+        <div class="poem">I know who I am
 at least enough to walk forward,
 but not enough to explain it clean.
 
 Some days I sit in class,
 but my mind is already outside,
-somewhere between trees that don't ask questions.
+somewhere between trees
+that don't ask questions.
 
-Out there, I feel like just another young life on this earth,
-nothing special, nothing above —
+Out there,
+I feel like just another young life
+on this earth,
+nothing special, nothing above
 just present.
 
 The trees don't judge me,
-they just stand, hundreds of years deep in silence,
+they just stand
+hundreds of years deep in silence,
 watching something like me pass through.
 
-And the river, carved by ice ages I can't even imagine,
+And the river
+carved by ice ages I can't even imagine,
 moving without trying,
 never asking where it's going.
 
-That's where I start to understand —
+That's where I start to understand
 it's not about the result.
-It's just the process:
+
+It's just the process
 breathing, standing, casting a line,
 letting time move whether I want it to or not.
 
@@ -590,59 +825,92 @@ I get smaller out there,
 in front of rock that came from fire,
 in front of water that shaped everything before me.
 
-And somehow —
-that's where I feel the most like myself.
+And somehow
+That's where I feel the most like myself.
 
-Because life, real life,
+Because life
+real life
 isn't built on what we chase,
+
 but on the things we forget to notice
-that have been holding everything together this whole time.</div>
+that have been holding everything together
+this whole time.</div>
       </article>
 
       <article class="poem-card">
-        <div class="poem-title">Poem #13</div>
-        <div class="poem">I walked beside the quiet stream
-The water pulled me slow
-The current moved like it had plans
-Of places I don't know</div>
+        <div class="poem-title">Sitting on Top of Mount Hood, Looking Down on Portland Covered in Clouds</div>
+        <div class="poem">Over my boots, the pumice holds the day's warmth,
+Breathing it back slowly through the soles.
+The wind smells like snow that has decided to wait.
+
+Below me, clouds gather in the valley,
+Soft as unmade beds,
+Hiding streets, traffic lights, late fights with your girlfriends.
+The city disappears politely.
+
+To the west, the sun slips behind the ridgeline,
+Handing its work to the moon without ceremony.
+Stars arrive early,
+One by one, like quiet agreements.
+
+An eagle cuts across the air,
+Black and certain,
+Not interested in arguments.
+
+Far down yonder, voices rise inside the clouds
+People choosing sides,
+Chasing the sun or the moon,
+Calling each other wrong
+While missing the evening entirely.
+
+The mountain does not listen.
+Neither do the trees.
+
+I keep a smile on my face.</div>
       </article>
     </div>
   </section>
 
-  <!-- PROJECTS -->
-  <section id="projects">
+  <!-- NATURE GALLERY -->
+  <section id="nature">
     <hgroup>
-      <h2>Projects</h2>
-      <p>What I've been building and researching</p>
+      <h2>Through My Eyes</h2>
+      <p>The world is full of stories. These are a few moments I was lucky enough to be part of.</p>
     </hgroup>
 
-    <div class="card-grid">
-      <article>
-        <div class="photo-placeholder">📷 Project photo coming soon</div>
-        <h3>Mass Timber Research</h3>
-        <p>
-          Research into mass timber construction — exploring its viability, sustainability impact, and
-          data-driven analysis of adoption trends compared to traditional building materials.
-        </p>
-      </article>
-
-      <article>
-        <div class="photo-placeholder">📷 Project photo coming soon</div>
-        <h3>Bikeshare Analytics</h3>
-        <p>
-          An analytics project digging into bikeshare usage patterns — ridership trends, station demand,
-          and what the data says about how cities actually move.
-        </p>
-      </article>
-
-      <article>
-        <div class="photo-placeholder">📷 More projects coming soon</div>
-        <h3>More in the Works</h3>
-        <p>
-          Always tying a new fly, running a new analysis, or starting a project I'll probably tell you
-          about before it's finished. Check back soon.
-        </p>
-      </article>
+    <div class="photo-gallery">
+      <img src="assets/images/gallery/through-canyon.jpg" alt="Hanging from a dead tree branch on the edge of the Grand Canyon, with layered canyon walls stretching into the distance" loading="lazy">
+      <img src="assets/images/gallery/through-river.jpg" alt="Standing on a moss-covered rock, fly fishing a turquoise river lined with evergreen trees" loading="lazy">
+      <img src="assets/images/gallery/through-football.jpg" alt="Team photo with Lewis & Clark College teammates and coaches on the football field after a game" loading="lazy">
+      <img src="assets/images/gallery/through-friends.jpg" alt="A night out with friends on a city sidewalk, string lights glowing in the trees behind us" loading="lazy">
+      <img src="assets/images/gallery/through-portrait.jpg" alt="A professional portrait with two colleagues against a black backdrop" loading="lazy">
+      <img src="assets/images/gallery/through-bison.jpg" alt="A bison grazing in a golden grassland with a full moon rising over rolling badlands hills at sunset" loading="lazy">
+      <img src="assets/images/gallery/through-creek.jpg" alt="A rocky slate creek winding through a sun-dappled green forest" loading="lazy">
+      <img src="assets/images/gallery/through-snowy-peak.jpg" alt="A snowy mountainside and tree line disappearing into heavy fog during a snowstorm" loading="lazy">
+      <img src="assets/images/gallery/through-waterfall-silver.jpg" alt="A tall waterfall dropping into a pool in a misty, moss-covered Pacific Northwest forest" loading="lazy">
+      <img src="assets/images/gallery/through-moss-tunnel.jpg" alt="A trail winding beneath an archway of moss-draped tree branches in a rainy forest" loading="lazy">
+      <img src="assets/images/gallery/through-mt-hood-blue.jpg" alt="A snow-covered peak under a clear blue sky, framed by a lone evergreen tree" loading="lazy">
+      <img src="assets/images/gallery/through-mt-hood-road.jpg" alt="A mountain highway curving through evergreen forest toward a snow-capped peak" loading="lazy">
+      <img src="assets/images/gallery/through-mossy-creek.jpg" alt="Moss-covered tree trunks rising above a rocky forest creek" loading="lazy">
+      <img src="assets/images/gallery/through-magnolia.jpg" alt="A vivid pink magnolia blossom opening on a campus tree in early spring" loading="lazy">
+      <img src="assets/images/gallery/through-forest-falls.jpg" alt="A narrow waterfall cascading down a moss-covered hillside through bare winter trees" loading="lazy">
+      <img src="assets/images/gallery/through-lake-mountains.jpg" alt="Snow-capped volcanic peaks rising beyond a lake, framed by bare standing trees" loading="lazy">
+      <img src="assets/images/gallery/through-flyrod-river.jpg" alt="A fly rod and reel resting on rocks overlooking a river tumbling over a waterfall below" loading="lazy">
+      <img src="assets/images/gallery/through-crater-lake.jpg" alt="Wizard Island rising from the deep blue water of Crater Lake, framed by snowy pines" loading="lazy">
+      <img src="assets/images/gallery/through-sunlit-river.jpg" alt="Sunlight filtering through tall forest trees onto a calm, winding river" loading="lazy">
+      <img src="assets/images/gallery/through-small-falls.jpg" alt="A small waterfall spilling into a quiet forest pool surrounded by greenery" loading="lazy">
+      <img src="assets/images/gallery/through-framed-river.jpg" alt="A rocky river framed between two moss-covered tree trunks in dappled forest light" loading="lazy">
+      <img src="assets/images/gallery/through-rocky-river.jpg" alt="A shallow river running over mossy boulders beneath a canopy of tall trees" loading="lazy">
+      <img src="assets/images/gallery/through-beach-sun.jpg" alt="Sunlight breaking through clouds over a quiet beach" loading="lazy">
+      <img src="assets/images/gallery/through-campfire-beach.jpg" alt="Roasting a hot dog over a crackling campfire on the beach" loading="lazy">
+      <img src="assets/images/gallery/through-grand-canyon-view.jpg" alt="Layered red rock walls of the Grand Canyon stretching toward the horizon" loading="lazy">
+      <img src="assets/images/gallery/through-campfire-fish.jpg" alt="A freshly caught fish roasting over an open campfire" loading="lazy">
+      <img src="assets/images/gallery/through-broken-treetop.jpg" alt="A tall, weathered tree with a broken top standing above the forest canopy" loading="lazy">
+      <img src="assets/images/gallery/through-foxglove.jpg" alt="Close-up of a blooming foxglove flower stalk" loading="lazy">
+      <img src="assets/images/gallery/through-flies-jacket.jpg" alt="A hand-tied fly and a beetle resting side by side on a fishing jacket" loading="lazy">
+      <img src="assets/images/gallery/through-moonlit-river.jpg" alt="A full moon glowing above a dark forest river at night" loading="lazy">
+      <img src="assets/images/gallery/through-skiing-selfie.jpg" alt="A selfie on a snowy mountain slope with a goggled, balaclava-covered face and a snow-capped peak behind" loading="lazy">
+      <img src="assets/images/gallery/through-skiing-mthood.jpg" alt="Standing on skis on a snowy slope holding a ski pole, with Mount Hood's snow-covered peak rising behind under a clear blue sky" loading="lazy">
     </div>
   </section>
 
