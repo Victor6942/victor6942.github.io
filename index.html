@@ -134,6 +134,43 @@
   .photo-gallery img:hover {
     transform: scale(1.04);
   }
+  /* Lightbox */
+  img.lightbox-trigger {
+    cursor: zoom-in;
+  }
+  #lightbox-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.9);
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    cursor: zoom-out;
+  }
+  #lightbox-overlay.open {
+    display: flex;
+  }
+  #lightbox-overlay img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: var(--pico-border-radius);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+  }
+  #lightbox-close {
+    position: fixed;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 2rem;
+    line-height: 1;
+    color: #fff;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+  }
   .photo-placeholder {
     aspect-ratio: 4 / 3;
     border-radius: var(--pico-border-radius);
@@ -935,6 +972,47 @@ I keep a smile on my face.</div>
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+<!-- LIGHTBOX -->
+<div id="lightbox-overlay">
+  <button id="lightbox-close" aria-label="Close enlarged image">&times;</button>
+  <img id="lightbox-image" src="" alt="">
+</div>
+
+<script>
+  (function () {
+    const overlay = document.getElementById('lightbox-overlay');
+    const overlayImg = document.getElementById('lightbox-image');
+    const closeBtn = document.getElementById('lightbox-close');
+
+    function openLightbox(img) {
+      overlayImg.src = img.currentSrc || img.src;
+      overlayImg.alt = img.alt || '';
+      overlay.classList.add('open');
+    }
+
+    function closeLightbox() {
+      overlay.classList.remove('open');
+      overlayImg.src = '';
+    }
+
+    document.querySelectorAll('main img').forEach(function (img) {
+      img.classList.add('lightbox-trigger');
+      img.addEventListener('click', function () {
+        openLightbox(img);
+      });
+    });
+
+    overlay.addEventListener('click', closeLightbox);
+    closeBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      closeLightbox();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  })();
 </script>
 
 </body>
