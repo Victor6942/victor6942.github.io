@@ -171,6 +171,25 @@
     cursor: pointer;
     padding: 0.25rem 0.5rem;
   }
+  .qr-card {
+    max-width: 220px;
+    margin: 2rem auto 0;
+    text-align: center;
+    padding: 1rem;
+    background: #fff;
+    border-radius: var(--pico-border-radius);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+  }
+  .qr-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .qr-card p {
+    margin: 0.5rem 0 0;
+    color: #1b1b1b;
+    font-size: 0.85rem;
+  }
   .photo-placeholder {
     aspect-ratio: 4 / 3;
     border-radius: var(--pico-border-radius);
@@ -962,6 +981,10 @@ I keep a smile on my face.</div>
       <a href="https://www.linkedin.com/in/your-linkedin-handle" target="_blank" rel="noopener">LinkedIn</a>
       — drop a message and I'll get back to you.
     </p>
+    <div class="qr-card">
+      <img src="assets/images/qr-code.png" alt="QR code linking to this website" width="180" height="180" loading="lazy">
+      <p>Scan to visit this site</p>
+    </div>
   </section>
 
 </main>
