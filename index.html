@@ -37,6 +37,11 @@
     backdrop-filter: blur(6px);
     background: rgba(15, 27, 20, 0.85);
     border-bottom: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    column-gap: 0.75rem;
   }
   nav.topnav ul {
     display: flex;
@@ -46,6 +51,34 @@
     margin: 0;
     padding: 0.6rem 0.5rem;
     list-style: none;
+  }
+  /* Language switcher (Google Translate widget) */
+  #google_translate_element {
+    display: flex;
+    align-items: center;
+  }
+  /* Hide Google's default "Select Language"/"Powered by" text, keep only the dropdown */
+  .goog-te-gadget {
+    font-size: 0 !important;
+    color: transparent !important;
+  }
+  .goog-te-gadget .goog-te-combo {
+    font-size: 0.85rem !important;
+    font-family: inherit !important;
+    color: #e8f1ea !important;
+    background: rgba(255,255,255,0.08) !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    border-radius: 999px !important;
+    padding: 0.3rem 0.5rem !important;
+    margin: 0 !important;
+  }
+  /* Prevent Google's injected top banner frame from pushing the page/nav down */
+  .goog-te-banner-frame.skiptranslate,
+  iframe.skiptranslate {
+    display: none !important;
+  }
+  body {
+    top: 0 !important;
   }
   nav.topnav a {
     font-size: 0.9rem;
@@ -379,12 +412,13 @@
     <li><a href="#nature">Through My Eyes</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <div id="google_translate_element" aria-label="Translate this page"></div>
 </nav>
 
 <main class="container">
 
   <header class="hero" id="home">
-    <h1>Victor Cho</h1>
+    <h1 class="notranslate">Victor Cho</h1>
     <p class="tagline">A curious outdoorsman, veteran, and lifelong learner who believes the world is too interesting to stop asking questions.</p>
     <div class="badge-row">
       <span>Fly-Fishing</span>
@@ -967,12 +1001,26 @@ I keep a smile on my face.</div>
 </main>
 
 <footer class="site-footer">
-  <p>&copy; <span id="year"></span> Victor Cho. Built with patience, poetry, and a questionable number of fishing flies.</p>
+  <p>&copy; <span id="year"></span> <span class="notranslate">Victor Cho</span>. Built with patience, poetry, and a questionable number of fishing flies.</p>
 </footer>
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
+
+<!-- TRANSLATE WIDGET -->
+<script>
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en',
+      // Top 10 most widely spoken/used languages (by number of speakers/web usage)
+      includedLanguages: 'en,zh-CN,es,hi,ar,pt,fr,ja,ko,de',
+      layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL,
+      autoDisplay: false
+    }, 'google_translate_element');
+  }
+</script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
 
 <!-- LIGHTBOX -->
 <div id="lightbox-overlay">
